@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="조별 활동을 위한 간단한 게시판" />
+    <title>모임톡 | 우리 조 게시판</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Gowun+Dodum&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="모임톡 홈">
+          <span class="brand-mark">M</span>
+          <span>모임톡</span>
+        </a>
+        <nav class="top-nav" aria-label="주요 메뉴">
+          <a class="active" href="#board">게시판</a>
+          <a href="#schedule">일정</a>
+          <a href="#members">조원</a>
+        </nav>
+        <button class="icon-button" id="themeButton" type="button" title="화면 테마 변경" aria-label="화면 테마 변경">
+          <i data-lucide="sun"></i>
+        </button>
+      </header>
+
+      <section class="intro" id="top">
+        <p class="eyebrow"><span></span> TEAM 04 SPACE</p>
+        <h1>우리 조의 이야기가<br />모이는 곳.</h1>
+        <p class="intro-copy">아이디어부터 공지까지, 필요한 대화를 가볍게 남겨보세요.</p>
+        <div class="stats" aria-label="게시판 현황">
+          <div><strong id="postCount">0</strong><span>전체 글</span></div>
+          <div><strong>04</strong><span>조원</span></div>
+          <div><strong>12:10</strong><span>오늘 마감</span></div>
+        </div>
+      </section>
+
+      <section class="board-layout" id="board">
+        <aside class="sidebar">
+          <div class="section-label">CATEGORIES</div>
+          <div class="filters" role="group" aria-label="게시글 분류">
+            <button class="filter active" data-category="전체">전체 <span id="allCount">0</span></button>
+            <button class="filter" data-category="공지">공지 <span>1</span></button>
+            <button class="filter" data-category="아이디어">아이디어 <span>2</span></button>
+            <button class="filter" data-category="질문">질문 <span>1</span></button>
+          </div>
+          <div class="deadline-card">
+            <i data-lucide="alarm-clock"></i>
+            <div><b>오늘의 목표</b><p>프로젝트 배포하기</p></div>
+          </div>
+        </aside>
+
+        <div class="board-content">
+          <div class="board-heading">
+            <div>
+              <p class="section-label">LATEST NOTES</p>
+              <h2>게시판</h2>
+            </div>
+            <button class="primary-button" id="openComposer" type="button"><i data-lucide="square-pen"></i> 새 글</button>
+          </div>
+          <div class="utility-row">
+            <label class="search-box"><i data-lucide="search"></i><input id="searchInput" type="search" placeholder="게시글을 검색하세요" /></label>
+            <span id="resultText" class="result-text"></span>
+          </div>
+          <div class="post-list" id="postList"></div>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="composer">
+      <form id="postForm" method="dialog">
+        <div class="modal-heading"><div><p class="section-label">NEW POST</p><h2>새 글 작성</h2></div><button class="icon-button" id="closeComposer" value="cancel" type="submit" title="닫기" aria-label="닫기"><i data-lucide="x"></i></button></div>
+        <label>카테고리<select id="category" required><option>공지</option><option selected>아이디어</option><option>질문</option></select></label>
+        <label>제목<input id="title" maxlength="80" required placeholder="게시글 제목을 입력하세요" /></label>
+        <label>내용<textarea id="content" rows="5" maxlength="400" required placeholder="조원에게 공유할 내용을 적어보세요"></textarea></label>
+        <div class="form-actions"><button value="cancel" type="submit" class="text-button">취소</button><button type="button" id="submitPost" class="primary-button">게시하기 <i data-lucide="arrow-up-right"></i></button></div>
+      </form>
+    </dialog>
+    <template id="postTemplate">
+      <article class="post-card">
+        <div class="post-meta"><span class="tag"></span><span class="date"></span></div>
+        <h3></h3><p class="post-copy"></p>
+        <div class="post-footer"><span class="author"></span><button class="like-button" type="button" title="좋아요"><i data-lucide="heart"></i><span></span></button></div>
+      </article>
+    </template>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
