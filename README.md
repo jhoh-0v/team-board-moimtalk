@@ -17,3 +17,5 @@
 ## 배포
 
 Vercel을 통해 정적 사이트로 배포했습니다.
+
+- Live URL: https://team-board-inky.vercel.app
